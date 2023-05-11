@@ -38,6 +38,8 @@
             this.historyButton = new System.Windows.Forms.Label();
             this.Setting = new System.Windows.Forms.Panel();
             this.hystory = new System.Windows.Forms.Panel();
+            this.ClearHistory = new System.Windows.Forms.Button();
+            this.ListOfHistory = new System.Windows.Forms.FlowLayoutPanel();
             this.privateSymbol = new System.Windows.Forms.TextBox();
             this.checkBoxPrivateSymbol = new System.Windows.Forms.CheckBox();
             this.checkBox09 = new System.Windows.Forms.CheckBox();
@@ -46,8 +48,6 @@
             this.lenght = new System.Windows.Forms.ComboBox();
             this.LenghtPassword = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.ListOfHistory = new System.Windows.Forms.FlowLayoutPanel();
-            this.ClearHistory = new System.Windows.Forms.Button();
             this.Setting.SuspendLayout();
             this.hystory.SuspendLayout();
             this.SuspendLayout();
@@ -107,7 +107,6 @@
             this.label2.Size = new System.Drawing.Size(205, 27);
             this.label2.TabIndex = 3;
             this.label2.Text = "Надежность пароля:";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // reliability
             // 
@@ -172,6 +171,31 @@
             this.hystory.Name = "hystory";
             this.hystory.Size = new System.Drawing.Size(567, 224);
             this.hystory.TabIndex = 16;
+            // 
+            // ClearHistory
+            // 
+            this.ClearHistory.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ClearHistory.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.ClearHistory.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.ClearHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ClearHistory.Font = new System.Drawing.Font("Segoe UI Variable Display Semib", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ClearHistory.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.ClearHistory.Location = new System.Drawing.Point(-5, 180);
+            this.ClearHistory.Name = "ClearHistory";
+            this.ClearHistory.Size = new System.Drawing.Size(581, 51);
+            this.ClearHistory.TabIndex = 1;
+            this.ClearHistory.Text = "Очистить историю              ";
+            this.ClearHistory.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ClearHistory.UseVisualStyleBackColor = true;
+            this.ClearHistory.Click += new System.EventHandler(this.ClearHistory_Click);
+            // 
+            // ListOfHistory
+            // 
+            this.ListOfHistory.AutoScroll = true;
+            this.ListOfHistory.Location = new System.Drawing.Point(-5, 4);
+            this.ListOfHistory.Name = "ListOfHistory";
+            this.ListOfHistory.Size = new System.Drawing.Size(581, 177);
+            this.ListOfHistory.TabIndex = 0;
             // 
             // privateSymbol
             // 
@@ -242,7 +266,6 @@
             this.checkBoxAZ.TabIndex = 11;
             this.checkBoxAZ.Text = "A-Z";
             this.checkBoxAZ.UseVisualStyleBackColor = true;
-            this.checkBoxAZ.CheckedChanged += new System.EventHandler(this.checkBoxAZ_CheckedChanged);
             // 
             // lenght
             // 
@@ -286,31 +309,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(629, 5);
             this.panel1.TabIndex = 8;
-            // 
-            // ListOfHistory
-            // 
-            this.ListOfHistory.AutoScroll = true;
-            this.ListOfHistory.Location = new System.Drawing.Point(-5, 4);
-            this.ListOfHistory.Name = "ListOfHistory";
-            this.ListOfHistory.Size = new System.Drawing.Size(581, 177);
-            this.ListOfHistory.TabIndex = 0;
-            // 
-            // ClearHistory
-            // 
-            this.ClearHistory.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ClearHistory.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
-            this.ClearHistory.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
-            this.ClearHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ClearHistory.Font = new System.Drawing.Font("Segoe UI Variable Display Semib", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ClearHistory.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.ClearHistory.Location = new System.Drawing.Point(-5, 180);
-            this.ClearHistory.Name = "ClearHistory";
-            this.ClearHistory.Size = new System.Drawing.Size(581, 51);
-            this.ClearHistory.TabIndex = 1;
-            this.ClearHistory.Text = "Очистить историю                                                            X";
-            this.ClearHistory.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ClearHistory.UseVisualStyleBackColor = true;
-            this.ClearHistory.Click += new System.EventHandler(this.ClearHistory_Click);
             // 
             // Form1
             // 

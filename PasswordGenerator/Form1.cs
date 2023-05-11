@@ -27,11 +27,6 @@ namespace PasswordGenerator
             lenght.Text = "16";
             hystory.Visible = false;
         }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
         public static void SetRoundedShape(Control control, int radius)
         {
             System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
@@ -104,34 +99,24 @@ namespace PasswordGenerator
             hystory.Visible = false;
             
         }
-        public string GeneratePassword()
+        public string ReliabilityPassword(bool a, bool b, bool c, bool d, int length)
         {
-            string chars = "";
-            if(checkBox09.Checked == true) chars = "0123456789";
-            if (checkBoxAZ.Checked == true) chars = chars + "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            if (checkBoxsmallAZ.Checked == true) chars = chars + "abcdefghijklmnopqrstuvwxyz";
-            if (checkBoxPrivateSymbol.Checked == true) chars = chars + privateSymbol.Text;
-            var random = new Random();
-            var password = new string(
-                Enumerable.Repeat(chars, int.Parse(lenght.Text))
-                          .Select(s => s[random.Next(s.Length)])
-                          .ToArray());
             int count = 0;
             int checking = 0;
-            if (checkBox09.Checked == true) count++;
-            if (checkBoxAZ.Checked == true) count++;
-            if (checkBoxPrivateSymbol.Checked == true) count++;
-            if (checkBoxsmallAZ.Checked == true) count++;
-            
-            if (int.Parse(lenght.Text) <= 11)
+            if (a == true) count++;
+            if (b == true) count++;
+            if (d == true) count++;
+            if (c == true) count++;
+
+            if (length <= 11)
             {
                 reliability.Text = "слабый";
                 reliability.ForeColor = Color.Red;
                 checking++;
             }
-            if(checking == 0 && int.Parse(lenght.Text) == 12)
+            if (checking == 0 && length == 12)
             {
-                if (int.Parse(lenght.Text) == 12 && count < 4 && checking == 0)
+                if (length == 12 && count < 4 && checking == 0)
                 {
                     reliability.Text = "слабый";
                     reliability.ForeColor = Color.Red;
@@ -141,66 +126,80 @@ namespace PasswordGenerator
                 {
                     reliability.Text = "средний";
                     reliability.ForeColor = Color.Yellow;
-                    checking++;
-                }
-            }
-            
-
-            if(checking == 0 && int.Parse(lenght.Text) == 13)
-            {
-                if (checking == 0 && int.Parse(lenght.Text) == 13 && count >= 4)
-                {
-                    reliability.Text = "средний";
-                    reliability.ForeColor = Color.Yellow;
-                    checking++;
-                }
-                else
-                {
-                    reliability.Text = "слабый";
-                    reliability.ForeColor = Color.Red;
                     checking++;
                 }
             }
 
-            if(checking == 0 && int.Parse(lenght.Text) == 14)
-            {
-                if (checking == 0 && int.Parse(lenght.Text) == 14 && count >= 3)
-                {
-                    reliability.Text = "средний";
-                    reliability.ForeColor = Color.Yellow;
-                    checking++;
-                }
-                else
-                {
-                    reliability.Text = "слабый";
-                    reliability.ForeColor = Color.Red;
-                    checking++;
-                }
-            }
-            
-            if(checking == 0 && int.Parse(lenght.Text) == 15) 
-            {
-                if (int.Parse(lenght.Text) == 15 && count >= 2)
-                {
-                    reliability.Text = "средний";
-                    reliability.ForeColor = Color.Yellow;
-                    checking++;
-                }
-                else
-                {
-                    reliability.Text = "слабый";
-                    reliability.ForeColor = Color.Red;
-                    checking++;
-                }
-            }
-            
 
-            if (count == 4 && int.Parse(lenght.Text) == 16)
+            if (checking == 0 && length == 13)
+            {
+                if (checking == 0 && length == 13 && count >= 4)
+                {
+                    reliability.Text = "средний";
+                    reliability.ForeColor = Color.Yellow;
+                    checking++;
+                }
+                else
+                {
+                    reliability.Text = "слабый";
+                    reliability.ForeColor = Color.Red;
+                    checking++;
+                }
+            }
+
+            if (checking == 0 && length == 14)
+            {
+                if (checking == 0 && length == 14 && count >= 3)
+                {
+                    reliability.Text = "средний";
+                    reliability.ForeColor = Color.Yellow;
+                    checking++;
+                }
+                else
+                {
+                    reliability.Text = "слабый";
+                    reliability.ForeColor = Color.Red;
+                    checking++;
+                }
+            }
+
+            if (checking == 0 && length == 15)
+            {
+                if (length == 15 && count >= 2)
+                {
+                    reliability.Text = "средний";
+                    reliability.ForeColor = Color.Yellow;
+                    checking++;
+                }
+                else
+                {
+                    reliability.Text = "слабый";
+                    reliability.ForeColor = Color.Red;
+                    checking++;
+                }
+            }
+
+
+            if (count == 4 && length == 16)
             {
                 reliability.Text = "надежный";
                 reliability.ForeColor = Color.Green;
                 checking++;
             }
+            return reliability.Text;
+        }
+        public string GeneratePassword(bool a, bool b, bool c, bool d, int length)
+        {
+            string chars = "";
+            if(a == true) chars = "0123456789";
+            if (b == true) chars = chars + "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            if (c == true) chars = chars + "abcdefghijklmnopqrstuvwxyz";
+            if (d == true) chars = chars + privateSymbol.Text;
+            var random = new Random();
+            var password = new string(
+                Enumerable.Repeat(chars, length)
+                          .Select(s => s[random.Next(s.Length)])
+                          .ToArray());
             return password;
         }
 
@@ -213,14 +212,23 @@ namespace PasswordGenerator
                     MessageBox.Show("Выберите хоть одну опцию");
                 } else
                 {     
-                    string pass = GeneratePassword();
-                    string[] passwords = File.ReadAllLines("rockyou.txt");
-                    if (passwords.Contains(pass))
-                    {
-                        MessageBox.Show("Этот пароль очень не безопасен, сгенерируйте еще раз");
-                    } else
+                    string pass = GeneratePassword(checkBox09.Checked, checkBoxAZ.Checked, checkBoxsmallAZ.Checked, checkBoxPrivateSymbol.Checked, int.Parse(lenght.Text));
+                    if(int.Parse(lenght.Text) >= 12 && checkBoxPrivateSymbol.Checked == true && (checkBox09.Checked == true || checkBoxAZ.Checked == true || checkBoxsmallAZ.Checked == true))
                     {
                         Password.Text = pass;
+                        string reb = ReliabilityPassword(checkBox09.Checked, checkBoxAZ.Checked, checkBoxsmallAZ.Checked, checkBoxPrivateSymbol.Checked, int.Parse(lenght.Text));
+                    } else
+                    {
+                        string[] passwords = File.ReadAllLines("rockyou.txt");
+                        if (passwords.Contains(pass))
+                        {
+                            MessageBox.Show("Этот пароль очень не безопасен, сгенерируйте еще раз");
+                        }
+                        else
+                        {
+                            Password.Text = pass;
+                            string reb = ReliabilityPassword(checkBox09.Checked, checkBoxAZ.Checked, checkBoxsmallAZ.Checked, checkBoxPrivateSymbol.Checked, int.Parse(lenght.Text));
+                        }
                     }
                 }
             } else
@@ -248,12 +256,6 @@ namespace PasswordGenerator
                 }
             }
         }
-
-        private void checkBoxAZ_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void ClearHistory_Click(object sender, EventArgs e)
         {
             File.WriteAllText("passwords.txt", string.Empty);
