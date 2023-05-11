@@ -213,7 +213,15 @@ namespace PasswordGenerator
                     MessageBox.Show("Выберите хоть одну опцию");
                 } else
                 {     
-                    Password.Text = GeneratePassword();
+                    string pass = GeneratePassword();
+                    string[] passwords = File.ReadAllLines("rockyou.txt");
+                    if (passwords.Contains(pass))
+                    {
+                        MessageBox.Show("Этот пароль очень не безопасен, сгенерируйте еще раз");
+                    } else
+                    {
+                        Password.Text = pass;
+                    }
                 }
             } else
             {
